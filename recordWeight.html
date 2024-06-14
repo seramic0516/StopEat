@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>몸무게 기록</title>
+    <link rel="stylesheet" href="recordWeight.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body>
+    <header>
+        <img id="logo" src="logo.png" alt="로고"/>
+        <nav class="nav-links">
+            <a href="recordWeight.html">몸무게 기록</a>
+            <a href="recordMeal.html">식단 기록</a>
+            <a href="viewMeal.php">식단 조회</a>
+        </nav>
+        <div class="header-buttons">
+            <button class="mypage" onclick="location.href='myPage.php'">My page</button>
+            <button class="logout" onclick="location.href='logout.php'">Logout</button>
+        </div>
+    </header>
+    <div class="main-container">
+        <div class="container1">
+            <h1>BMI 계산</h1>
+            <p class="subComment">아래에 정보를 입력하면 BMI를 계산해요!<br/>
+               저장하기 버튼을 눌르면 날짜 별로 저장됩니다.</p>
+            <form class="input-group-wrapper" method="post" action="saveData.php">
+                <img src="working_burger.png" alt="Working Burger" class="burger-image"/>
+                <div class="input-groups">
+                    <div class="input-group">
+                        <label for="date">날짜 선택 :</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="age">나이 :</label>
+                        <input type="number" id="age" name="age" placeholder="세">
+                    </div>
+                    <div class="input-group">
+                        <label for="gender">성별 :</label>
+                        <select id="gender" name="gender">
+                            <option value="female">여자</option>
+                            <option value="male">남자</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="height">신장 :</label>
+                        <input type="number" id="height" name="height" placeholder="cm">
+                    </div>
+                    <div class="input-group">
+                        <label for="weight">몸무게 :</label>
+                        <input type="number" id="weight" name="weight" placeholder="kg">
+                    </div>
+                    <div class="buttons">
+                        <button class="calculate-button" type="button" onclick="calculateBMI()">계산하기</button>
+                        <button class="save-button" type="submit">저장하기</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="bmi-results">
+                <p class="bmi-display">나의 신장과 몸무게로 계산했을 때 BMI는 <span id="bmiValue">______</span>야!</p>
+                <p class="bmi-status">BMI로는 <span id="bmiStatus">______</span>이니까 <span id="bmiMessage">______</span></p>
+            </div>
+        </div>
+
+        <div class="container2">
+            <h2>몸무게 변화 추이</h2>
+            <form id="chart-form" method="GET" action="fetchData.php" onsubmit="loadChart(event)">
+                <label for="startDate">시작 날짜:</label>
+                <input type="date" id="startDate" name="start_date">
+                <span class="forBlock">
+                <label for="endDate">끝 날짜:</label>
+                <input type="date" id="endDate" name="end_date">
+                </span>
+                <button class = "chart-button" type="submit">차트 불러오기</button>
+            </form>      
+
+            <canvas id="weightChart" style="width:100%;max-width:700px"></canvas>
+        </div>
+    </div>
+    <script src="recordWeight.js"></script>
+</body>
+</html>

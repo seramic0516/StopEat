@@ -3,24 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입</title>
+    <title>StopEat | 회원가입</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="register.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Sign up</h1>
-        <form action="" method="post">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button class="register-button" type="submit">submit</button>
-        </form>
-        <button class="login-button" onclick="location.href='login.php'">login page</button>
+    <div class="auth-page">
+        <div class="container">
+            <img src="logo.png" alt="StopEat 로고" class="auth-logo">
+            <h1>StopEat과 함께 시작해요</h1>
+            <p class="auth-subtitle">간단한 정보만 입력하면 바로 시작할 수 있어요</p>
+            <form action="" method="post">
+                <div class="form-group">
+                    <label for="username">아이디</label>
+                    <input type="text" id="username" name="username" placeholder="사용할 아이디를 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" placeholder="사용할 비밀번호를 입력하세요" required>
+                </div>
+                <button class="register-button btn" type="submit">회원가입</button>
+            </form>
+            <div class="auth-divider"><span>이미 계정이 있다면</span></div>
+            <button class="login-button btn btn-outline" onclick="location.href='login.php'">로그인 하러 가기</button>
+        </div>
     </div>
 </body>
 </html>

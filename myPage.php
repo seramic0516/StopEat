@@ -43,12 +43,16 @@ if (isset($_POST['newPassword'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page</title>
-    <link rel="stylesheet" href="myPage.css?after">
+    <title>StopEat | My Page</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="myPage.css">
 </head>
 <body>
     <header>
@@ -64,19 +68,29 @@ if (isset($_POST['newPassword'])) {
         </div>
     </header>
     <div class="container">
-        <div class="header">
-            <h2><?php echo $username; ?>님의 MyPage입니다</h2>
+        <div class="profile-card">
+            <div class="avatar">🍔</div>
+            <div>
+                <p class="eyebrow">MY PAGE</p>
+                <h1><?php echo htmlspecialchars($username); ?>님, 안녕하세요!</h1>
+            </div>
         </div>
-        <h2>비밀번호 변경</h2>
-        <form action="myPage.php" method="post">
-            <label for="currentPassword">현재 비밀번호:</label>
-            <input type="password" id="currentPassword" name="currentPassword" required>
 
-            <label for="newPassword">새 비밀번호:</label>
-            <input type="password" id="newPassword" name="newPassword" required>
-
-            <input type="submit" value="비밀번호 변경">
-        </form>
+        <div class="panel">
+            <h2>비밀번호 변경</h2>
+            <p class="panel-desc">보안을 위해 주기적으로 비밀번호를 변경해주세요.</p>
+            <form action="myPage.php" method="post">
+                <div class="form-group">
+                    <label for="currentPassword">현재 비밀번호</label>
+                    <input type="password" id="currentPassword" name="currentPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">새 비밀번호</label>
+                    <input type="password" id="newPassword" name="newPassword" required>
+                </div>
+                <button class="btn" type="submit">비밀번호 변경</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

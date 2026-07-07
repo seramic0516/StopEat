@@ -3,7 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>몸무게 기록</title>
+    <title>StopEat | 몸무게 기록</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="recordWeight.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
@@ -11,7 +15,7 @@
     <header>
         <img id="logo" src="logo.png" alt="로고"/>
         <nav class="nav-links">
-            <a href="recordWeight.html">몸무게 기록</a>
+            <a href="recordWeight.html" class="active">몸무게 기록</a>
             <a href="recordMeal.html">식단 기록</a>
             <a href="viewMeal.php">식단 조회</a>
         </nav>
@@ -52,15 +56,15 @@
                         <input type="number" id="weight" name="weight" placeholder="kg">
                     </div>
                     <div class="buttons">
-                        <button class="calculate-button" type="button" onclick="calculateBMI()">계산하기</button>
-                        <button class="save-button" type="submit">저장하기</button>
+                        <button class="calculate-button btn btn-outline" type="button" onclick="calculateBMI()">계산하기</button>
+                        <button class="save-button btn" type="submit">저장하기</button>
                     </div>
                 </div>
             </form>
 
-            <div class="bmi-results">
+            <div class="bmi-results" id="bmiResults">
                 <p class="bmi-display">나의 신장과 몸무게로 계산했을 때 BMI는 <span id="bmiValue">______</span>야!</p>
-                <p class="bmi-status">BMI로는 <span id="bmiStatus">______</span>이니까 <span id="bmiMessage">______</span></p>
+                <p class="bmi-status">BMI로는 <span class="bmi-badge" id="bmiStatus">______</span>이니까 <span id="bmiMessage">______</span></p>
             </div>
         </div>
 
@@ -73,8 +77,8 @@
                 <label for="endDate">끝 날짜:</label>
                 <input type="date" id="endDate" name="end_date">
                 </span>
-                <button class = "chart-button" type="submit">차트 불러오기</button>
-            </form>      
+                <button class="chart-button btn" type="submit">차트 불러오기</button>
+            </form>
 
             <canvas id="weightChart" style="width:100%;max-width:700px"></canvas>
         </div>

@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>식단 조회</title>
+    <title>StopEat | 식단 조회</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="viewMeal.css">
 </head>
 <body>
@@ -12,18 +16,23 @@
         <nav class="nav-links">
             <a href="recordWeight.html">몸무게 기록</a>
             <a href="recordMeal.html">식단 기록</a>
-            <a href="viewMeal.php">식단 조회</a>
+            <a href="viewMeal.php" class="active">식단 조회</a>
         </nav>
         <div class="header-buttons">
             <button class="mypage" onclick="location.href='myPage.php'">My page</button>
             <button class="logout" onclick="location.href='logout.php'">Logout</button>
         </div>
     </header>
-    <h1 style="text-align:center;">식단 조회</h1>
-    <form id="view-form" method="post" style="text-align:center;">
-        <label for="date">날짜 선택: </label>
+
+    <div class="page-heading">
+        <h1>식단 조회</h1>
+        <p>기록해둔 날짜를 선택하면 그날의 식단을 볼 수 있어요</p>
+    </div>
+
+    <form id="view-form" method="post">
+        <label for="date">날짜 선택</label>
         <input type="date" id="date" name="date">
-        <button type="submit" name="submit" value="Submit" id="view">조회하기</button>
+        <button type="submit" name="submit" value="Submit" id="view" class="btn">조회하기</button>
     </form>
 
     <?php
@@ -67,20 +76,29 @@
         $record = mysqli_fetch_assoc($result);
         $totalCalories = $record ? $record['total_calories'] : 0;
 
-        echo "<div style='text-align:center;'>";
-        echo "선택한 날짜: " . $date . "<br>";
-        echo "총 칼로리: " . $totalCalories . "<br>";
-
         // 메뉴 항목 가져오기 (0 칼로리 제외)
-        $query = "SELECT menu, calories 
-                    FROM menu_entries 
+        $query = "SELECT menu, calories
+                    FROM menu_entries
                     WHERE record_date = '$date' AND user_id = '$user_id' AND calories > 0";
         $result = mysqli_query($db, $query) or die(mysqli_error($db));
-        
-        echo "메뉴 항목:<br>";
+
+        echo "<div class='result-card'>";
+        echo "<div class='result-summary'>";
+        echo "<div class='result-date'>" . htmlspecialchars($date) . "</div>";
+        echo "<div class='result-total'><span>" . (int)$totalCalories . "</span> kcal</div>";
+        echo "</div>";
+
+        echo "<h3 class='result-subtitle'>메뉴 항목</h3>";
+        echo "<ul class='menu-list'>";
+        $hasMenu = false;
         while ($row = mysqli_fetch_assoc($result)) {
-            echo "메뉴: " . $row['menu'] . " - 칼로리: " . $row['calories'] . "<br>";
+            $hasMenu = true;
+            echo "<li><span class='menu-name'>" . htmlspecialchars($row['menu']) . "</span><span class='menu-calorie'>" . (int)$row['calories'] . " kcal</span></li>";
         }
+        if (!$hasMenu) {
+            echo "<li class='empty-state'>등록된 메뉴가 없어요.</li>";
+        }
+        echo "</ul>";
         echo "</div>";
     }
 
@@ -97,30 +115,37 @@
     ?>
 
     <!-- 댓글 입력 폼 -->
-    <div id="comment" style="text-align:center;">
-        <h3>댓글</h3>
+    <div class="comment-section">
+        <h3>댓글 남기기</h3>
         <form id="comment-form" method="post">
-            <textarea id="comment" name="comment" rows="3" cols="40" placeholder="댓글을 입력하세요."></textarea>
-            <button type="submit" id="commentButton">댓글 작성</button>
+            <textarea id="comment" name="comment" rows="3" placeholder="오늘의 다짐이나 소감을 남겨보세요."></textarea>
+            <button type="submit" id="commentButton" class="btn">댓글 작성</button>
         </form>
     </div>
 
     <!-- 모든 댓글 display -->
-    <h3 style="text-align:center;">모든 댓글:</h3>
-    <?php
-    $query = "SELECT comment, comment_date 
-                FROM comments 
-                ORDER BY comment_date DESC";
-    $result = mysqli_query($db, $query) or die(mysqli_error($db));
-    
-    echo "<div style='text-align:center;'>";
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<div>";
-        echo "<p>" . $row['comment'] . "</p>";
-        echo "<small>" . $row['comment_date'] . "</small>";
+    <div class="comment-section">
+        <h3>모든 댓글</h3>
+        <?php
+        $query = "SELECT comment, comment_date
+                    FROM comments
+                    ORDER BY comment_date DESC";
+        $result = mysqli_query($db, $query) or die(mysqli_error($db));
+
+        echo "<div class='comment-list'>";
+        $hasComment = false;
+        while ($row = mysqli_fetch_assoc($result)) {
+            $hasComment = true;
+            echo "<div class='comment-item'>";
+            echo "<p>" . nl2br(htmlspecialchars($row['comment'])) . "</p>";
+            echo "<small>" . htmlspecialchars($row['comment_date']) . "</small>";
+            echo "</div>";
+        }
+        if (!$hasComment) {
+            echo "<p class='empty-state'>아직 작성된 댓글이 없어요.</p>";
+        }
         echo "</div>";
-    }
-    echo "</div>";
-    ?>
+        ?>
+    </div>
 </body>
 </html>

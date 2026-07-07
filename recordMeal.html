@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>식단 기록</title>
+    <title>StopEat | 식단 기록</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="recordMeal.css">
 </head>
 <body>
@@ -11,7 +15,7 @@
         <img id="logo" src="logo.png" alt="로고"/>
         <nav class="nav-links">
             <a href="recordWeight.html">몸무게 기록</a>
-            <a href="recordMeal.html">식단 기록</a>
+            <a href="recordMeal.html" class="active">식단 기록</a>
             <a href="viewMeal.php">식단 조회</a>
         </nav>
         <div class="header-buttons">
@@ -19,66 +23,74 @@
             <button class="logout" onclick="location.href='logout.php'">Logout</button>
         </div>
     </header>
-    <h1>식단 기록</h1>
+
+    <div class="page-heading">
+        <h1>오늘의 식단 기록</h1>
+        <p>먹은 메뉴와 칼로리를 끼니별로 입력해주세요</p>
+    </div>
+
     <form id="meal-form" method="post" action="saveData.php">
-        <label for="date" id="dateLabel">날짜 선택: </label>
-        <input type="date" id="date" name="date">
+        <div class="date-row">
+            <label for="date" id="dateLabel">날짜 선택</label>
+            <input type="date" id="date" name="date">
+        </div>
 
         <div class="grid-container">
             <div class="card" id="breakfast">
-                <h2>아침</h2>
+                <h2><span class="meal-icon" aria-hidden="true">🌅</span>아침</h2>
                 <div class="entry">
-                    <label>메뉴: </label>
-                    <input type="text" name="menu[]"><br/>
-                    <label>칼로리: </label>
-                    <input type="number" name="calorie[]"><br/>
+                    <label>메뉴</label>
+                    <input type="text" name="menu[]" placeholder="예: 토스트">
+                    <label>칼로리</label>
+                    <input type="number" name="calorie[]" placeholder="kcal">
                 </div>
-                <button type="button" class="add-entry">메뉴 추가</button>
+                <button type="button" class="add-entry">+ 메뉴 추가</button>
             </div>
 
             <div class="card" id="lunch">
-                <h2>점심</h2>
+                <h2><span class="meal-icon" aria-hidden="true">🍚</span>점심</h2>
                 <div class="entry">
-                    <label>메뉴: </label>
-                    <input type="text" name="menu[]"><br/>
-                    <label>칼로리: </label>
-                    <input type="number" name="calorie[]"><br/>
+                    <label>메뉴</label>
+                    <input type="text" name="menu[]" placeholder="예: 김치찌개">
+                    <label>칼로리</label>
+                    <input type="number" name="calorie[]" placeholder="kcal">
                 </div>
-                <button type="button" class="add-entry">메뉴 추가</button>
+                <button type="button" class="add-entry">+ 메뉴 추가</button>
             </div>
 
             <div class="card" id="dinner">
-                <h2>저녁</h2>
+                <h2><span class="meal-icon" aria-hidden="true">🍽️</span>저녁</h2>
                 <div class="entry">
-                    <label>메뉴: </label>
-                    <input type="text" name="menu[]"><br/>
-                    <label>칼로리: </label>
-                    <input type="number" name="calorie[]"><br/>
+                    <label>메뉴</label>
+                    <input type="text" name="menu[]" placeholder="예: 닭가슴살 샐러드">
+                    <label>칼로리</label>
+                    <input type="number" name="calorie[]" placeholder="kcal">
                 </div>
-                <button type="button" class="add-entry">메뉴 추가</button>
+                <button type="button" class="add-entry">+ 메뉴 추가</button>
             </div>
 
             <div class="card" id="snack">
-                <h2>간식</h2>
+                <h2><span class="meal-icon" aria-hidden="true">🍪</span>간식</h2>
                 <div class="entry">
-                    <label>메뉴: </label>
-                    <input type="text" name="menu[]"><br/>
-                    <label>칼로리: </label>
-                    <input type="number" name="calorie[]"><br/>
+                    <label>메뉴</label>
+                    <input type="text" name="menu[]" placeholder="예: 아메리카노">
+                    <label>칼로리</label>
+                    <input type="number" name="calorie[]" placeholder="kcal">
                 </div>
-                <button type="button" class="add-entry">메뉴 추가</button>
+                <button type="button" class="add-entry">+ 메뉴 추가</button>
             </div>
         </div>
 
         <input type="hidden" id="totalCalories" name="totalCalories">
         <div class="form-buttons">
-            <button type="button" id="calculate">계산하기</button>
-            <button type="submit" name="submit" value="Submit" id="save">저장하기</button>
+            <button type="button" id="calculate" class="btn btn-outline">계산하기</button>
+            <button type="submit" name="submit" value="Submit" id="save" class="btn">저장하기</button>
         </div>
     </form>
 
     <div id="total-calories">
-        <h3>총 칼로리는 _____ kcal 입니다!</h3>
+        <h3><span id="totalCaloriesText">총 칼로리는 <strong>_____</strong> kcal 입니다!</span></h3>
+        <div class="calorie-bar"><div class="calorie-bar-fill" id="calorieBarFill"></div></div>
         <p id="comment">여기에 하루 권장 칼로리와 비교한 코멘트가 표시됩니다.</p>
     </div>
 

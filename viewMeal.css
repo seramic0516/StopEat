@@ -1,204 +1,220 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body, html {
-    background-color: #fff5f5;
-    width: 100%;
-    height: 100%;
-    font-family: 'Arial', sans-serif;
-    color: #333;
-}
-
-/*헤더 시작*/
-
-header {
-    background-color: #ffe2e2;
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    padding: 5px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-}
-
-#logo {
-    height: 70px;
-    padding-right: 100px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: black;
-    padding: 10px 14px;
-    border-radius: 8px;
-    font-size: 1.1rem;
-}
-
-.nav-links a:hover {
-    color: white;
-    background-color: #ff9292;
-}
-
-.header-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.header-buttons button {
-    font-size: 1.0rem; 
-    color: white; 
-    background-color: #ff7d7d;
-    border: none;
-    border-radius: 8px; 
-    padding: 8px 12px; 
-    cursor: pointer;
-    align-items: center;
-    justify-content: center; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-}
-
-.header-buttons button:hover {
-    background-color: #ff6d6d;
-    transform: translateY(-2px); 
-}
-
-h1 {
+.page-heading {
     text-align: center;
-    margin: 30px 0;
-    color: #ff5c5c;
+    margin: 40px 0 6px;
 }
 
-/*폼*/  
-form {
+.page-heading h1 {
+    margin: 0 0 6px;
+    color: var(--ink);
+    font-size: 1.5rem;
+}
+
+.page-heading p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+}
+
+#view-form {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    gap: 12px;
+    margin: 24px auto 30px;
 }
 
-
 label {
-    text-align: center;
-    font-size: 16px;
-    margin-right: 10px;
-    width: 100px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--ink-soft);
 }
 
 input {
-    width: 200px;
-    margin: 10px;
-    padding: 8px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
+    padding: 9px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
     font-size: 14px;
+    font-family: var(--font-sans);
+    background-color: var(--surface);
+    color: var(--ink);
 }
 
-#view { /*view-button*/
-    font-size: 14px; 
-    color: white; 
-    background-color: #ff7d7d;
-    border: none;
-    border-radius: 8px; 
-    padding: 8px 12px; 
-    cursor: pointer;
-    margin-right: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+input:focus {
+    outline: none;
+    border-color: var(--ink);
+    box-shadow: 0 0 0 3px var(--surface-muted);
 }
 
-#view-button:hover{
-    background-color: #ff6d6d;
+.result-card,
+.comment-section {
+    width: 90%;
+    max-width: 680px;
+    margin: 0 auto 20px;
+    padding: 26px 32px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
 }
 
-
-#commentButton{
-    font-size: 1.0rem; 
-    color: white; 
-    background-color: #ff7d7d;
-    border: none;
-    border-radius: 8px; 
-    padding: 8px 12px; 
-    cursor: pointer;
+.result-summary {
+    display: flex;
     align-items: center;
-    justify-content: center; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    justify-content: space-between;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
 }
 
-#commentButton:hover {
-    background-color: #ff6d6d;
-    transform: translateY(-2px); 
+.result-date {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.result-total {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+}
+
+.result-total span {
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: var(--accent-dark);
+    margin-right: 4px;
+}
+
+.result-subtitle {
+    margin: 0 0 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 2px;
+    border-bottom: 1px solid var(--border);
+}
+
+.menu-list li:last-child {
+    border-bottom: none;
+}
+
+.menu-name {
+    font-weight: 500;
+    color: var(--ink);
+}
+
+.menu-calorie {
+    font-weight: 700;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--ink-faint);
+    padding: 12px 0;
+}
+
+.comment-section h3 {
+    margin: 0 0 16px;
+    font-size: 1rem;
+    color: var(--ink);
+}
+
+#comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    color: var(--ink);
+    resize: vertical;
+    background-color: var(--surface);
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--ink);
+    box-shadow: 0 0 0 3px var(--surface-muted);
+}
+
+#commentButton {
+    align-self: flex-end;
+}
+
+.comment-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-item {
+    padding: 12px 2px;
+    border-bottom: 1px solid var(--border);
+}
+
+.comment-item:last-child {
+    border-bottom: none;
+}
+
+.comment-item p {
+    margin: 0 0 6px;
+    color: var(--ink);
+    font-size: 0.92rem;
+}
+
+.comment-item small {
+    color: var(--ink-faint);
+    font-size: 0.76rem;
 }
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
-    #logo {
-        height: 50px;
-        padding-right: 0;
-        margin-bottom: 10px; 
+    .page-heading {
+        margin: 18px 0 4px;
     }
 
-    header {
-        align-items: center;
+    .page-heading h1 {
+        font-size: 1.3rem;
+    }
+
+    #view-form {
         flex-direction: column;
-        padding: 10px;
-    }
-
-    .nav-links {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+        align-items: stretch;
         gap: 10px;
+        width: 90%;
+    }
+
+    .result-card,
+    .comment-section {
         width: 100%;
-        flex-wrap: wrap; 
+        padding: 18px;
     }
 
-    .nav-links a {
-        font-size: 15px;
-        padding: 10px;
-        text-align: center;
-        width: auto;
-    }
-
-    .header-buttons {
-        margin-top: 10px; 
-        width: 100%;
-        justify-content: center;
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-    }
-
-    .header-buttons button {
-        font-size: 12px;
-        padding: 10px 20px;
-    }
-
-    h1 {
-        font-size: 30px;
-    }
-
-    label {
-        font-size: 15px;
-    }
-
-    input[type="date"] {
-        padding: 6px 10px;
-        font-size: 12px;
-    }
-
-    #view { 
-        width: 90px;
-        font-size: 10px; 
-        padding: 6px 10px; 
-    }
-
-    #record {
-        padding: 15px;
+    .result-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
     }
 }

@@ -1,104 +1,33 @@
-/* 기본 스타일 */
-* {
-    margin: 0;
-    padding: 0;  
-    box-sizing: border-box;
-}
-
-body, html {
-    background-color: #fff5f5;
-    width: 100%;
-    height: 100%;
-    font-family: Arial, sans-serif;
-}
-
-/* 헤더 스타일 */
-header {
-    background-color: #ffe2e2;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#logo {
-    height: 70px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: black;
-    padding: 10px 14px;
-    border-radius: 8px;
-    font-size: 1.1rem;
-}
-
-.nav-links a:hover {
-    color: white;
-    background-color: #ff9292;
-}
-
-.header-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.header-buttons button {
-    font-size: 1.0rem; 
-    color: white; 
-    background-color: #ff7d7d;
-    border: none;
-    border-radius: 8px; 
-    padding: 8px 12px; 
-    cursor: pointer;
-    align-items: center;
-    justify-content: center; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-}
-
-.header-buttons button:hover {
-    background-color: #ff6d6d;
-    transform: translateY(-2px);
-}
-
 /* 메인 */
 .main-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    padding: 20px;
+    padding: 28px;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 .container1, .container2 {
-    background-color: white;
-    border-radius: 10px;
-    padding: 35px;
-    font-size: 20px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
     min-height: 400px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 
 h1, h2 {
-    color: #333;
-    font-size: 28px;
+    color: var(--ink);
+    font-size: 1.3rem;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .subComment {
     text-align: center;
-    margin: 25px 0;
-}
-
-p {
-    font-size: 16px;
-    color: #666;
+    margin: 0 0 20px;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
 }
 
 .input-group-wrapper {
@@ -110,10 +39,10 @@ p {
 }
 
 .burger-image {
-    flex: 0 0 35%;
-    max-width: 35%;
+    flex: 0 0 30%;
+    max-width: 30%;
     height: auto;
-    margin: 0 30px;
+    margin: 0 20px;
 }
 
 .input-groups {
@@ -121,13 +50,11 @@ p {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 20px 0;
-    align-items: flex-end;
-    padding-right: 10px;
+    margin: 0;
+    align-items: stretch;
 }
 
 .input-group {
-    margin: 2px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -135,142 +62,132 @@ p {
 }
 
 label {
-    text-align: center;
-    font-size: 16px;
-    width: 100px;
+    text-align: left;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+    width: 70px;
+    flex-shrink: 0;
 }
 
 input, select {
-    width: 200px;
-    padding: 8px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
+    flex: 1;
+    padding: 9px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
     font-size: 14px;
+    font-family: var(--font-sans);
+    background-color: var(--surface);
+    color: var(--ink);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-select {
-    padding-right: 30px;
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--ink);
+    box-shadow: 0 0 0 3px var(--surface-muted);
 }
 
 .buttons {
     display: flex;
-    margin: 20px;
-}
-
-.calculate-button, .save-button, .chart-button {
-    font-size: 14px; 
-    color: white; 
-    background-color: #ff7d7d;
-    border: none;
-    border-radius: 8px; 
-    padding: 8px 12px; 
-    cursor: pointer;
-    margin-right: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-}
-
-.calculate-button:hover, .save-button:hover, .chart-button:hover {
-    background-color: #ff6d6d;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 16px 0 0;
 }
 
 .bmi-results {
-    background-color: #ffe2e2;
-    padding: 5px 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--surface-muted);
+    padding: 18px 20px;
+    border-radius: var(--radius-md);
     text-align: center;
 }
 
 .bmi-display, .bmi-status {
-    font-size: 17px;
-    margin: 20px 0;
-    font-weight: bold;
-    color: black;
+    font-size: 0.92rem;
+    margin: 10px 0;
+    color: var(--ink);
+}
+
+.bmi-display span {
+    font-weight: 700;
+    color: var(--accent-dark);
+}
+
+.bmi-status span#bmiMessage {
+    font-weight: 500;
+    color: var(--ink-soft);
+}
+
+.bmi-badge {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 2px 12px;
+    border-radius: 999px;
+    background-color: var(--surface-muted);
+    color: var(--ink-soft);
+}
+
+.bmi-badge.low {
+    background-color: var(--status-info-bg);
+    color: var(--status-info);
+}
+
+.bmi-badge.normal {
+    background-color: var(--status-good-bg);
+    color: var(--status-good);
+}
+
+.bmi-badge.high {
+    background-color: var(--status-warn-bg);
+    color: var(--status-warn);
 }
 
 #chart-form {
-    margin: 30px 0;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 10px 0 24px;
+    justify-content: center;
+}
+
+#chart-form .forBlock {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#chart-form label {
+    width: auto;
 }
 
 canvas {
-    margin: 20px 0;
+    margin: 10px 0 0;
 }
 
 /* 모바일 버전 스타일 */
 @media (max-width: 768px) {
-    #logo {
-        height: 50px;
-        padding-right: 0;
-        margin-bottom: 10px; 
-    }
-
-    header {
-        align-items: center;
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .nav-links {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 10px;
-        width: 100%;
-        flex-wrap: wrap; 
-    }
-
-    .nav-links a {
-        font-size: 15px;
-        padding: 10px;
-        text-align: center;
-        width: auto;
-    }
-
-    .header-buttons {
-        margin-top: 10px; 
-        width: 100%;
-        justify-content: center;
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-    }
-
-    .header-buttons button {
-        font-size: 12px;
-        padding: 10px 20px;
-    }
-    
     .main-container {
         display: flex;
         flex-direction: column;
-        gap: 10px; 
-        padding: 10px;
+        gap: 16px;
+        padding: 14px;
     }
 
     .container1, .container2 {
         width: 100%;
-        padding: 15px;
-        min-height: auto; 
-        font-size: 12px; 
-        box-shadow: 0 0 3px rgba(0,0,0,0.1); 
+        padding: 20px;
+        min-height: auto;
     }
 
     h1, h2 {
-        color: black;
-        font-size: 1.5rem; 
-        text-align: center;
-        margin-bottom: 10px; 
+        font-size: 1.15rem;
+        margin-bottom: 12px;
     }
 
     .subComment {
-        text-align: center;
-        margin: 15px 0;
-        font-size: 10px; 
-    }
-
-    p {
-        font-size: 10px; 
-        color: black;
+        font-size: 0.8rem;
     }
 
     .input-group-wrapper {
@@ -281,72 +198,41 @@ canvas {
 
     .burger-image {
         margin-bottom: 15px;
-        max-width: 50%; 
+        max-width: 45%;
     }
 
     .input-groups {
-        margin: 0;
-        align-items: center;
-        gap: 5px; 
-        padding-right: 0; 
+        width: 100%;
+        gap: 8px;
     }
 
     .input-group {
-        width: 100%; 
-        display: flex;
-        flex-direction: row; 
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 8px; 
-    }
-
-    .input-group label {
-        width: 40%; 
-        text-align: left; 
-    }
-
-    .input-group input, select {
-        width: 60%; 
+        width: 100%;
     }
 
     .buttons {
         justify-content: center;
         width: 100%;
-        margin-top: 0; 
+    }
+
+    .buttons .btn {
+        flex: 1;
     }
 
     canvas {
         width: 100%;
     }
 
-    #chart-form .input-group {
+    #chart-form {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
     }
 
-    #chart-form label {
-        text-align: left;
-        margin-bottom: 5px;
-    }
-
-    .bmi-results {
-        background-color: #ffe2e2;
-        padding: 5px; 
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        font-size: 10px; 
+    #chart-form .forBlock {
+        justify-content: space-between;
     }
 
     .bmi-display, .bmi-status {
-        font-size:10px;
-        margin: 10px 0; 
-        font-weight: bold;
-        color: black;
-    }
-
-    .forBlock{
-        display: block;
-        margin: 10px;
+        font-size: 0.82rem;
     }
 }

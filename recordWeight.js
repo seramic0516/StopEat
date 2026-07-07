@@ -15,20 +15,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let bmiStatus = '';
             let bmiMessage = '';
+            let bmiLevel = '';
 
             if (bmiValue < 18.5) {
                 bmiStatus = '저체중';
                 bmiMessage = '체중을 늘리기 위해 노력해보세요.';
+                bmiLevel = 'low';
             } else if (bmiValue < 24.9) {
                 bmiStatus = '정상 체중';
                 bmiMessage = '과도한 다이어트보다는 건강한 식습관을 유지해보세요.';
+                bmiLevel = 'normal';
             } else {
                 bmiStatus = '과체중';
                 bmiMessage = '체중을 줄이기 위해 조금만 더 노력해볼까요?!';
+                bmiLevel = 'high';
             }
 
             bmiStatusElement.innerText = bmiStatus;
             bmiMessageElement.innerText = bmiMessage;
+            bmiStatusElement.classList.remove('low', 'normal', 'high');
+            bmiStatusElement.classList.add(bmiLevel);
         } else {
             alert('신장과 몸무게를 입력해주세요.');
         }

@@ -1,0 +1,244 @@
+/* ==========================================================================
+   StopEat — shared design tokens & layout (header/nav/buttons)
+   Monochrome + single accent, flat / hairline-border minimal style.
+   Imported by every page; page-specific CSS only holds page-only rules.
+   ========================================================================== */
+
+:root {
+    /* neutrals */
+    --ink: #14151a;
+    --ink-soft: #6b6d76;
+    --ink-faint: #9a9ca3;
+
+    --bg: #fafafa;
+    --surface: #ffffff;
+    --surface-muted: #f4f4f5;
+
+    --border: #e7e7e9;
+    --border-strong: #d6d6da;
+
+    /* single accent */
+    --accent: #ff5a36;
+    --accent-dark: #e6472a;
+    --accent-soft: #fff1ed;
+
+    /* status (used sparingly, e.g. BMI badges) */
+    --status-info: #2f6fed;
+    --status-info-bg: #eef3fe;
+    --status-good: #1f9d63;
+    --status-good-bg: #eafaf2;
+    --status-warn: #e6472a;
+    --status-warn-bg: #fff1ed;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+
+    --shadow-sm: 0 1px 2px rgba(20, 21, 26, 0.05);
+    --shadow-md: 0 8px 24px rgba(20, 21, 26, 0.08);
+
+    --font-sans: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    /* legacy aliases kept so page CSS written against the old palette still resolves */
+    --brand: var(--accent);
+    --brand-dark: var(--accent-dark);
+    --brand-darker: var(--accent-dark);
+    --brand-light: var(--accent-soft);
+    --brand-lighter: var(--bg);
+    --brand-soft: var(--surface-muted);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg);
+    font-family: var(--font-sans);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Site header / nav                                                      */
+/* ---------------------------------------------------------------------- */
+
+header {
+    background: var(--surface);
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+    height: 64px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+#logo {
+    height: 34px;
+    padding-right: 0;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 4px;
+    height: 100%;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    padding: 0 14px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 0.92rem;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-links a:hover {
+    color: var(--ink);
+}
+
+.nav-links a.active {
+    color: var(--ink);
+    font-weight: 700;
+    border-bottom-color: var(--accent);
+}
+
+.header-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.header-buttons button {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    background-color: transparent;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.header-buttons button.logout {
+    color: var(--ink);
+}
+
+.header-buttons button:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+    background-color: var(--surface-muted);
+}
+
+.header-buttons button.mypage:hover {
+    border-color: var(--accent);
+    color: var(--accent-dark);
+    background-color: var(--accent-soft);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Generic buttons                                                        */
+/* ---------------------------------------------------------------------- */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: white;
+    background-color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover {
+    background-color: var(--accent-dark);
+    border-color: var(--accent-dark);
+}
+
+.btn-outline {
+    color: var(--ink);
+    background-color: var(--surface);
+    border: 1px solid var(--border-strong);
+}
+
+.btn-outline:hover {
+    background-color: var(--surface-muted);
+    border-color: var(--ink-faint);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Mobile header                                                          */
+/* ---------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    header {
+        align-items: center;
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+        height: auto;
+    }
+
+    #logo {
+        height: 28px;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        height: auto;
+        gap: 2px;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+        height: auto;
+        border-bottom: none;
+        border-radius: var(--radius-sm);
+    }
+
+    .nav-links a.active {
+        background-color: var(--accent-soft);
+        color: var(--accent-dark);
+    }
+
+    .header-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .header-buttons button {
+        font-size: 0.8rem;
+        padding: 8px 14px;
+    }
+}

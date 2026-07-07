@@ -1,89 +1,63 @@
-header {
-    /*background-color: black;*/
-    background-color: #ffe2e2;
-    width: 100%; 
-    box-sizing: border-box; 
+.container {
+    max-width: 480px;
+    margin: 56px auto;
+    padding: 0 20px;
+}
+
+.profile-card {
     display: flex;
-    justify-content: space-between; 
     align-items: center;
-    padding: 5px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    gap: 16px;
+    background: var(--surface);
+    color: var(--ink);
+    padding: 24px 26px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 20px;
 }
 
-#logo {
-    height: 70px;
-    padding-right: 100px;
-}
-
-.nav-links {
+.avatar {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
     display: flex;
-    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    background: var(--accent-soft);
+    border-radius: 50%;
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: black;
-    padding: 10px 14px;
-    border-radius: 8px;
+.eyebrow {
+    margin: 0 0 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+}
+
+.profile-card h1 {
+    margin: 0;
     font-size: 1.1rem;
 }
 
-.nav-links a:hover {
-    color: white;
-    background-color: #ff9292;
+.panel {
+    background: var(--surface);
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
 }
 
-.header-buttons {
-    display: flex;
-    gap: 10px;
+.panel h2 {
+    margin: 0 0 6px;
+    text-align: left;
+    font-size: 1rem;
 }
 
-.header-buttons button {
-    font-size: 1.0rem; 
-    color: white; 
-    background-color: #ff7d7d;
-    border: none;
-    border-radius: 8px; 
-    padding: 8px 12px; 
-    cursor: pointer;
-    align-items: center;
-    justify-content: center; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-}
-
-.header-buttons button:hover {
-    background-color: #ff6d6d;
-    transform: translateY(-2px); /*출처 남기기*/
-}
-
-.header-buttons button i {
-    margin-right: 8px;
-    font-size: 18px;
-}
-
-/*메인 시작*/
-body, html {
-    margin: 0;
-    padding: 0;
-    background-color: #fff5f5;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box; 
-}
-
-.container {
-    margin: 50px auto;
-    background: #fff;
-    padding: 70px;
-    width: 350px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-
-h2 {
-    margin-top: 0;
-    text-align: center;
+.panel-desc {
+    margin: 0 0 22px;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
 }
 
 form {
@@ -91,82 +65,57 @@ form {
     flex-direction: column;
 }
 
+.form-group {
+    text-align: left;
+    margin-bottom: 14px;
+}
+
 label {
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    display: block;
     margin-bottom: 6px;
 }
 
 input {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
+    padding: 11px 13px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-input[type="submit"] {
-    color: white;
-    margin: 20px 0;
-    border: none;
-    background-color: #ff7d7d;
-    cursor: pointer;
+input:focus {
+    outline: none;
+    border-color: var(--ink);
+    box-shadow: 0 0 0 3px var(--surface-muted);
 }
 
-input[type="submit"]:hover {
-    background-color: #ff6d6d;
+.panel .btn {
+    margin-top: 6px;
+    align-self: flex-end;
 }
-
 
 /* 모바일 버전 */
 @media (max-width: 768px) {
-    #logo {
-        height: 50px;
-        padding-right: 0;
-        margin-bottom: 10px; 
-    }
-
-    header {
-        align-items: center;
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .nav-links {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 10px;
-        width: 100%;
-        flex-wrap: wrap; 
-    }
-
-    .nav-links a {
-        font-size: 15px;
-        padding: 10px;
-        text-align: center;
-        width: auto;
-    }
-
-    .header-buttons {
-        margin-top: 10px; 
-        width: 100%;
-        justify-content: center;
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-    }
-
-    .header-buttons button {
-        font-size: 12px;
-        padding: 10px 20px;
-    }
-
-    form {
-        width: 100%;
-    }
-
     .container {
-        width: 90%;
+        margin: 24px auto;
+    }
+
+    .profile-card {
+        padding: 18px;
+    }
+
+    .panel {
         padding: 20px;
-        margin: 20px auto;
+    }
+
+    .panel .btn {
+        align-self: stretch;
     }
 }
